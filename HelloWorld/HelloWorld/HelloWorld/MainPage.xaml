@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloWorld.MainPage"
+             xmlns:local="clr-namespace:HelloWorld"
+             BindingContext="{local:MainViewModel}">
+
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="My Dummy App" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <StackLayout Padding="20,0">
+            <Label Text="Foobar!" FontSize="Title" Padding="0,10"/>
+            <Entry x:Name="InputEntry" Placeholder="Input text here..." Text="{Binding Dummy}" />
+            <Button x:Name="ProcessButton" Text="Process" Margin="10,0" Clicked="ProcessButton_Clicked" />
+            <Label x:Name="OutputEntry" Text="" FontSize="Title" Padding="0,10" />
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

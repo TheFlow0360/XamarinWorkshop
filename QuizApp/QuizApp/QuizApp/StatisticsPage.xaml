@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizApp.StatisticsPage"
+             Title="Statistiken">
+    <ContentPage.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="Large" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Padding="25,10" Spacing="10">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Total Questions seen:" HorizontalOptions="StartAndExpand" />
+                <Label Text="{Binding TotalQuestionsSeen}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Correct answers:" HorizontalOptions="StartAndExpand" />
+                <Label Text="{Binding CorrectAnswers}" TextColor="Green" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Incorrect answers:" HorizontalOptions="StartAndExpand" />
+                <Label Text="{Binding IncorrectAnswers}" TextColor="Crimson" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Questions skipped:" HorizontalOptions="StartAndExpand" />
+                <Label Text="{Binding QuestionsSkipped}" TextColor="SlateGray" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

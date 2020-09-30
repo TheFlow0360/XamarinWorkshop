@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:quizapp="clr-namespace:QuizApp"
+             x:Class="QuizApp.QuizPage">
+    <ContentPage.Resources>
+        <quizapp:QuestionDisplayToColorConverter x:Key="QuestionDisplayToColorConverter" />
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="OpenStatisticsButton" Command="{Binding OpenStatisticsCommand}" Text="Statistiken" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <Frame BackgroundColor="{Binding QuestionDisplay, Converter={StaticResource QuestionDisplayToColorConverter}}" Margin="20" Padding="24" CornerRadius="10" VerticalOptions="FillAndExpand">
+            <Label Text="{Binding CurrentQuestion}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <StackLayout Orientation="Horizontal">
+            <Button HorizontalOptions="CenterAndExpand" Command="{Binding AnswerFalseCommand}" Text="Falsch" IsEnabled="{Binding AllowInteraction}" />
+            <Button HorizontalOptions="CenterAndExpand" Command="{Binding AnswerTrueCommand}" Text="Richtig" IsEnabled="{Binding AllowInteraction}" />
+        </StackLayout>
+        <Button HorizontalOptions="Center" Command="{Binding SkipCommand}" Text="Überspringen" IsEnabled="{Binding AllowInteraction}" Margin="0,0,0,10" />
+    </StackLayout>
+
+</ContentPage>
