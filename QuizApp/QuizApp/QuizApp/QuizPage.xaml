@@ -10,6 +10,10 @@
     </ContentPage.ToolbarItems>
     <StackLayout>
         <Frame BackgroundColor="{Binding QuestionDisplay, Converter={StaticResource QuestionDisplayToColorConverter}}" Margin="20" Padding="24" CornerRadius="10" VerticalOptions="FillAndExpand">
+            <Frame.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Right" Command="{Binding AnswerTrueCommand}"/>
+                <SwipeGestureRecognizer Direction="Left" Command="{Binding AnswerFalseCommand}"/>
+            </Frame.GestureRecognizers>
             <Label Text="{Binding CurrentQuestion}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
         <StackLayout Orientation="Horizontal">
