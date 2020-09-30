@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace QuizApp
 {
-    class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged
     {
         private List<Tuple<string, bool>> Questions { get; }
 
@@ -108,11 +107,15 @@ namespace QuizApp
         {
             // TODO read from file
             Questions.Add(new Tuple<string, bool>("1 + 1 = 10", true));
-            Questions.Add(new Tuple<string, bool>("Is 42 the answer to everything?", true));
-            Questions.Add(new Tuple<string, bool>("this statement is false", false));
+            Questions.Add(new Tuple<string, bool>("42 ist die Antwort auf alles", true));
+            Questions.Add(new Tuple<string, bool>("1337 ist eine Primzahl", false));
+            Questions.Add(new Tuple<string, bool>("Magdeburg ist die Landeshauptstadt von Sachsen", false));
+            Questions.Add(new Tuple<string, bool>("Xamarin macht Spaß", true));
+            Questions.Add(new Tuple<string, bool>("Niemand mag Java", true));
             if (Questions.Count > 0)
             {
                 CurrentQuestionIndex = 0;
+                Questions.Shuffle();
             }
 
             QuestionChanged();
@@ -168,6 +171,7 @@ namespace QuizApp
             {
                 // TODO later maybe end the game here or show statistics
                 CurrentQuestionIndex = 0;
+                Questions.Shuffle();
             }
 
             QuestionChanged();

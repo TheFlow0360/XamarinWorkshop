@@ -1,6 +1,6 @@
 ﻿namespace QuizApp
 {
-    enum QuestionDisplayType
+    public enum QuestionDisplayType
     {
         Unanswered,
         Correct,
