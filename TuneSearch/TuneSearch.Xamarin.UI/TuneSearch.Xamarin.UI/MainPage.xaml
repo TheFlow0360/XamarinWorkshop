@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ui="clr-namespace:TuneSearch.Xamarin.UI"
+             x:Class="TuneSearch.Xamarin.UI.MainPage">
+    <ContentPage.Resources>
+        <ui:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </ContentPage.Resources>
+    <StackLayout>
+        <SearchBar Text="{Binding SearchText, Mode=TwoWay}" IsReadOnly="{Binding IsWorking}" />
+        <Button Text="Search" HorizontalOptions="End" Command="{Binding SearchCommand}" IsEnabled="{Binding IsWorking, Converter={StaticResource InverseBooleanConverter}}" />
+        <ActivityIndicator HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" IsRunning="{Binding IsWorking}" HeightRequest="100" />
+    </StackLayout>
+
+</ContentPage>
