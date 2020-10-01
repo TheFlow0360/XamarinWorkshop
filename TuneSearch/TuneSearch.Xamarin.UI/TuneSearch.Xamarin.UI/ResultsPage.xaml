@@ -5,16 +5,27 @@
              Title="{Binding Title}">
     <ContentPage.Content>
         <ListView ItemsSource="{Binding SearchResults}"
-                  GroupDisplayBinding="{Binding Title}"
+                  GroupDisplayBinding="{Binding Header}"
+                  GroupShortNameBinding="{Binding ShortName}"
                   IsGroupingEnabled="True"
                   HasUnevenRows="True">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <FlexLayout Padding="5" Direction="Row" AlignItems="End" JustifyContent="Start" Wrap="Wrap">
+                            <Label Text="{Binding Header.Title}" FontSize="Medium" FontAttributes="Bold" Margin="0,0,5,0"/>
+                            <Label Text="{Binding Header.ArtistDisplay}" FontSize="Medium" Margin="0,0,5,0" LineBreakMode="TailTruncation" />
+                        </FlexLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" Padding="10">
                             <Image Source="{Binding AlbumCoverSource}" HeightRequest="100" />
-                            <Label Text="{Binding TrackNr}" FontSize="Large" VerticalOptions="Center"/>
-                            <StackLayout Margin="15,0">
+                            <Label Text="{Binding TrackNr}" FontSize="Large" VerticalOptions="Center" Margin="5,0"/>
+                            <StackLayout Margin="5,0">
                                 <Label Text="{Binding Title}" FontSize="Medium" />
                                 <Label Text="{Binding Artist}" FontSize="Small" />
                             </StackLayout>

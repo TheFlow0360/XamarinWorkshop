@@ -17,12 +17,13 @@ namespace TuneSearch.Xamarin.UI.Mocks
         {
             Title = title;
             var c = 0;
+            const string artist = "Unknown Artist";
             TrackListInternal = new List<ITrack>()
             {
-                new TrackMock() { Title = "First Track", Artist = $"{Title} Artist", TrackNr = ++c },
-                new TrackMock() { Title = "Second Track", Artist = $"{Title} Artist", TrackNr = ++c },
-                new TrackMock() { Title = "Third Track", Artist = $"{Title} Artist", TrackNr = ++c },
-                new TrackMock() { Title = "Last Track", Artist = $"{Title} Artist", TrackNr = ++c },
+                new TrackMock() { Title = "First Track", Artist = artist, TrackNr = ++c },
+                new TrackMock() { Title = "Second Track", Artist = artist, TrackNr = ++c },
+                new TrackMock() { Title = "Third Track", Artist = artist, TrackNr = ++c },
+                new TrackMock() { Title = "Last Track", Artist = "other which is way too long to display in one line", TrackNr = ++c },
             };
         }
     }

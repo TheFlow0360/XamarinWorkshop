@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Linq;
 using System.Text;
 using TuneSearch.Core.Ports;
 
@@ -19,7 +20,7 @@ namespace TuneSearch.Xamarin.UI
             foreach (var album in result.AlbumList)
             {
                 var albumEntry = new Album();
-                albumEntry.Title = album.Title;
+                albumEntry.Header.Title = album.Title;
                 foreach (var track in album.TrackList)
                 {
                     albumEntry.Add(new Track()
@@ -29,6 +30,8 @@ namespace TuneSearch.Xamarin.UI
                         TrackNr = track.TrackNr,
                         AlbumCoverSource = album.AlbumCoverSource
                     });
+
+                    albumEntry.Header.Artists.Add(track.Artist);
                 }
 
                 SearchResults.Add(albumEntry);
@@ -37,7 +40,9 @@ namespace TuneSearch.Xamarin.UI
 
         public class Album : List<Track>
         {
-            public string Title { get; set; }
+            public AlbumHeader Header { get; } = new AlbumHeader();
+
+            public String ShortName => Header.Title.Length > 0 ? Header.Title.Substring(0, 1) : "";
         }
 
         public class Track
@@ -49,6 +54,15 @@ namespace TuneSearch.Xamarin.UI
             public int? TrackNr { get; set; }
 
             public string AlbumCoverSource { get; set; }
+        }
+
+        public class AlbumHeader
+        {
+            public string Title { get; set; }
+
+            public HashSet<string> Artists { get; } = new HashSet<string>();
+
+            public string ArtistDisplay => $"({string.Join(", ", Artists)})";
         }
     }
 }
