@@ -10,7 +10,7 @@ namespace QuizApp
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private List<Tuple<string, bool>> Questions { get; }
+        private List<(string, bool)> Questions { get; }
 
         private const int NOQUESTION = -1;
 
@@ -95,7 +95,7 @@ namespace QuizApp
         public MainViewModel(Action openStatisticsAction)
         {
             OpenStatisticsAction = openStatisticsAction ?? throw new ArgumentNullException(nameof(openStatisticsAction));
-            Questions = new List<Tuple<string, bool>>();
+            Questions = new List<(string, bool)>();
             AnswerTrueCommand = new Command(async () => await Answer(true));
             AnswerFalseCommand = new Command(async () => await Answer(false));
             SkipCommand = new Command(Skip);
@@ -106,12 +106,12 @@ namespace QuizApp
         private void LoadQuestions()
         {
             // TODO read from file
-            Questions.Add(new Tuple<string, bool>("1 + 1 = 10", true));
-            Questions.Add(new Tuple<string, bool>("42 ist die Antwort auf alles", true));
-            Questions.Add(new Tuple<string, bool>("1337 ist eine Primzahl", false));
-            Questions.Add(new Tuple<string, bool>("Magdeburg ist die Landeshauptstadt von Sachsen", false));
-            Questions.Add(new Tuple<string, bool>("Xamarin macht Spaß", true));
-            Questions.Add(new Tuple<string, bool>("Niemand mag Java", true));
+            Questions.Add(("1 + 1 = 10", true));
+            Questions.Add(("42 ist die Antwort auf alles", true));
+            Questions.Add(("1337 ist eine Primzahl", false));
+            Questions.Add(("Magdeburg ist die Landeshauptstadt von Sachsen", false));
+            Questions.Add(("Xamarin macht Spaß", true));
+            Questions.Add(("Niemand mag Java", true));
             if (Questions.Count > 0)
             {
                 CurrentQuestionIndex = 0;
