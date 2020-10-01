@@ -8,6 +8,6 @@ namespace TuneSearch.Core.Ports
 
         IReadOnlyList<ITrack> TrackList { get; }
 
-        string AlbumArtSource { get; }
+        string AlbumCoverSource { get; }
     }
 }

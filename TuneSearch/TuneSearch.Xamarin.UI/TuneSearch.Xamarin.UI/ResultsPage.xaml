@@ -4,10 +4,24 @@
              x:Class="TuneSearch.Xamarin.UI.ResultsPage"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ListView ItemsSource="{Binding SearchResults}"
+                  GroupDisplayBinding="{Binding Title}"
+                  IsGroupingEnabled="True"
+                  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Image Source="{Binding AlbumCoverSource}" HeightRequest="100" />
+                            <Label Text="{Binding TrackNr}" FontSize="Large" VerticalOptions="Center"/>
+                            <StackLayout Margin="15,0">
+                                <Label Text="{Binding Title}" FontSize="Medium" />
+                                <Label Text="{Binding Artist}" FontSize="Small" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>
