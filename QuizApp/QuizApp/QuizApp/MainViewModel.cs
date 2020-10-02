@@ -194,6 +194,7 @@ namespace QuizApp
                 QuestionDisplay = QuestionDisplayType.Incorrect;
             }
 
+            _ = HapticFeedback(answer == expected);
             await Task.Delay(DISPLAYRESULTTIME);
 
             QuestionDisplay = QuestionDisplayType.Unanswered;
@@ -267,6 +268,31 @@ namespace QuizApp
             if (Accelerometer.IsMonitoring)
             {
                 Accelerometer.Stop();
+            }
+        }
+
+        private async Task HapticFeedback(bool positive)
+        {
+            try
+            {
+                if (positive)
+                {
+                    Vibration.Vibrate(50);
+                    await Task.Delay(100);
+                    Vibration.Vibrate(50);
+                } else
+                {
+                    Vibration.Vibrate(500);
+                }
+                
+            }
+            catch (FeatureNotSupportedException)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception)
+            {
+                // Other error has occurred.
             }
         }
     }
