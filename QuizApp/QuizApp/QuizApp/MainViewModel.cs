@@ -1,9 +1,13 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace QuizApp
@@ -103,9 +107,58 @@ namespace QuizApp
             LoadQuestions();
         }
 
+        private string DatabasePath => Path.Combine(FileSystem.AppDataDirectory, "data.db");
+
+        public void LoadStatistics()
+        {
+            using (var db = new SQLiteConnection(DatabasePath))
+            {
+                db.CreateTable<StatisticsData>();
+                if (db.Table<StatisticsData>().Count() <= 0)
+                {
+                    return;
+                }
+
+                foreach (var row in db.Table<StatisticsData>())
+                {
+                    if (row.Name == nameof(TotalQuestionsSeen))
+                    {
+                        TotalQuestionsSeen = row.Value;
+                    }
+                    else if (row.Name == nameof(QuestionsSkipped))
+                    {
+                        QuestionsSkipped = row.Value;
+                    }
+                    else if (row.Name == nameof(CorrectAnswers))
+                    {
+                        CorrectAnswers = row.Value;
+                    }
+                    else if (row.Name == nameof(IncorrectAnswers))
+                    {
+                        IncorrectAnswers = row.Value;
+                    }
+                }
+            }
+        }
+
+        public void SaveStatistics()
+        {
+            using (var db = new SQLiteConnection(DatabasePath))
+            {
+                db.CreateTable<StatisticsData>();
+                db.RunInTransaction(() =>
+                {
+                    db.InsertOrReplace(new StatisticsData(nameof(TotalQuestionsSeen), TotalQuestionsSeen));
+                    db.InsertOrReplace(new StatisticsData(nameof(QuestionsSkipped), QuestionsSkipped));
+                    db.InsertOrReplace(new StatisticsData(nameof(CorrectAnswers), CorrectAnswers));
+                    db.InsertOrReplace(new StatisticsData(nameof(IncorrectAnswers), IncorrectAnswers));
+                });
+            }
+        }
+
         private void LoadQuestions()
         {
-            // TODO read from file
+            // TODO read from file or db
             Questions.Add(("1 + 1 = 10", true));
             Questions.Add(("42 ist die Antwort auf alles", true));
             Questions.Add(("1337 ist eine Primzahl", false));

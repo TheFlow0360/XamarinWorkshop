@@ -32,10 +32,12 @@ namespace QuizApp
 
         protected override void OnStart()
         {
+            ViewModel.LoadStatistics();
         }
 
         protected override void OnSleep()
         {
+            ViewModel.SaveStatistics();
         }
 
         protected override void OnResume()
