@@ -17,7 +17,7 @@ namespace QuizApp
             InitializeComponent();
 
             ViewModel = new MainViewModel(() => MainPage.Navigation.PushAsync(StatisticsPage));
-            QuizPage = new QuizPage()
+            QuizPage = new QuizPage(ViewModel)
             {
                 BindingContext = ViewModel
             };

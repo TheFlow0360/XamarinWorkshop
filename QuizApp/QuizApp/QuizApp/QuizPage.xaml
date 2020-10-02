@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:quizapp="clr-namespace:QuizApp"
-             x:Class="QuizApp.QuizPage">
+             x:Class="QuizApp.QuizPage"
+             Appearing="ContentPage_Appearing"
+             Disappearing="ContentPage_Disappearing">
     <ContentPage.Resources>
         <quizapp:QuestionDisplayToColorConverter x:Key="QuestionDisplayToColorConverter" />
     </ContentPage.Resources>

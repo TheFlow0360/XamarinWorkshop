@@ -1,18 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace QuizApp
 {
     public partial class QuizPage : ContentPage
     {
-        public QuizPage()
+        private IAppearingHandler AppearingHandler { get; }
+
+        public QuizPage(IAppearingHandler appearingHandler)
         {
+            AppearingHandler = appearingHandler;
             InitializeComponent();
+        }
+
+        private void ContentPage_Appearing(object sender, System.EventArgs e)
+        {
+            AppearingHandler.Appeared();
+        }
+
+        private void ContentPage_Disappearing(object sender, System.EventArgs e)
+        {
+            AppearingHandler.Disappeared();
         }
     }
 }

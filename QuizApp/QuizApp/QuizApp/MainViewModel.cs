@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -12,7 +11,7 @@ using Xamarin.Forms;
 
 namespace QuizApp
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : INotifyPropertyChanged, IAppearingHandler
     {
         private List<(string, bool)> Questions { get; }
 
@@ -104,6 +103,7 @@ namespace QuizApp
             AnswerFalseCommand = new Command(async () => await Answer(false));
             SkipCommand = new Command(Skip);
             OpenStatisticsCommand = new Command(OpenStatisticsAction);
+            Accelerometer.ShakeDetected += (s, e) => Skip();
             LoadQuestions();
         }
 
@@ -240,5 +240,34 @@ namespace QuizApp
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        public void Appeared()
+        {
+            try
+            {
+                if (Accelerometer.IsMonitoring)
+                {
+                    Accelerometer.Stop();
+                }
+
+                Accelerometer.Start(SensorSpeed.Game);
+            }
+            catch (FeatureNotSupportedException)
+            {
+                // Feature not supported on device
+            }
+            catch (Exception)
+            {
+                // Other error has occurred.
+            }
+        }
+
+        public void Disappeared()
+        {
+            if (Accelerometer.IsMonitoring)
+            {
+                Accelerometer.Stop();
+            }
+        }
     }
 }
