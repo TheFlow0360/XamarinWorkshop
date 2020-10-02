@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="launcher_background">#223127</color>
+	<color name="colorPrimary">#064174</color>
+	<color name="colorPrimaryDark">#042B4E</color>
+	<color name="colorAccent">@android:color/holo_orange_dark</color>
+</resources>
