@@ -6,7 +6,7 @@ namespace TuneSearch.Core.Ports
     {
         string Title { get; }
 
-        IReadOnlyList<ITrack> TrackList { get; }
+        IEnumerable<ITrack> TrackList { get; }
 
         string AlbumCoverSource { get; }
     }

@@ -6,9 +6,16 @@ namespace TuneSearch.Core
 {
     public class TuneSearchService : ISearchRequest
     {
-        public Task<ISearchResult> ProcessRequest(string searchTerm)
+        private IInfrastructure Infrastructure { get; }
+
+        public TuneSearchService(IInfrastructure infrastructure)
         {
-            throw new NotImplementedException();
+            Infrastructure = infrastructure;
+        }
+
+        public async Task<ISearchResult> ProcessRequest(string searchTerm)
+        {
+            return await Infrastructure.ProcessRequest(searchTerm);
         }
     }
 }

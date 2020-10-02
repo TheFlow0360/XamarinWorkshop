@@ -4,6 +4,6 @@ namespace TuneSearch.Core.Ports
 {
     public interface ISearchResult
     {
-        IReadOnlyList<IAlbum> AlbumList { get; }
+        IEnumerable<IAlbum> AlbumList { get; }
     }
 }
