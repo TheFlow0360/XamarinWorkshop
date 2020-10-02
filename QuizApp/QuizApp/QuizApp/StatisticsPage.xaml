@@ -24,7 +24,7 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Questions skipped:" HorizontalOptions="StartAndExpand" />
-                <Label Text="{Binding QuestionsSkipped}" TextColor="SlateGray" />
+                <Label Text="{Binding QuestionsSkipped}" TextColor="{AppThemeBinding Light=DarkSlateGray, Dark=LightSlateGray}" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
