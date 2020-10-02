@@ -250,7 +250,7 @@ namespace QuizApp
                     Accelerometer.Stop();
                 }
 
-                Accelerometer.Start(SensorSpeed.Game);
+                Accelerometer.Start(SensorSpeed.UI);
             }
             catch (FeatureNotSupportedException)
             {
