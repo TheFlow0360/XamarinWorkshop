@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace TuneSearch.Infrastructure
 {
@@ -20,6 +21,9 @@ namespace TuneSearch.Infrastructure
 
         public int TrackNumber { get; set; }
 
-        public string ArtworkUrl30 { get; set; }
+        public string ArtworkUrl100 { get; set; }
+
+        public string ArtworkUrl300 => Regex.Replace(ArtworkUrl100, @"^(.*)100x100(bb\.jpg)$",
+            m => m.Groups[1].Value + "300x300" + m.Groups[2].Value);
     }
 }

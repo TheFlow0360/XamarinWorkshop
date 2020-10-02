@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\TuneSearch.Core.Ports\TuneSearch.Core.Ports.csproj" />
+    <ProjectReference Include="..\..\TuneSearch.Core\TuneSearch.Core.csproj" />
+    <ProjectReference Include="..\..\TuneSearch.Infrastructure\TuneSearch.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

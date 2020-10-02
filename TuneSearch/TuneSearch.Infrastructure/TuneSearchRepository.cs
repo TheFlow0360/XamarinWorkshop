@@ -27,7 +27,7 @@ namespace TuneSearch.Infrastructure
                         album = new Album
                         {
                             Title = searchResult.CollectionName,
-                            AlbumCoverSource = searchResult.ArtworkUrl30
+                            AlbumCoverSource = searchResult.ArtworkUrl300
                         };
 
                         result.AlbumListInternal.Add(searchResult.CollectionName, album);
@@ -39,6 +39,11 @@ namespace TuneSearch.Infrastructure
                         Title = searchResult.TrackName,
                         TrackNr = searchResult.TrackNumber
                     });
+                }
+
+                foreach (var album in result.AlbumListInternal.Values)
+                {
+                    album.TrackListInternal.Sort((x, y) => x.TrackNrNotNull.CompareTo(y.TrackNrNotNull));
                 }
 
                 return result;

@@ -9,5 +9,7 @@ namespace TuneSearch.Infrastructure
         public string Artist { get; set; }
 
         public int? TrackNr { get; set; }
+
+        public int TrackNrNotNull => TrackNr.HasValue ? TrackNr.Value : int.MinValue;
     }
 }

@@ -10,7 +10,7 @@ namespace TuneSearch.Infrastructure
 
         public IEnumerable<ITrack> TrackList => TrackListInternal;
 
-        public List<ITrack> TrackListInternal { get; } = new List<ITrack>();
+        public List<Track> TrackListInternal { get; } = new List<Track>();
 
         public string AlbumCoverSource { get; set; }
     }

@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
+using TuneSearch.Core;
 using TuneSearch.Core.Ports;
+using TuneSearch.Infrastructure;
 using TuneSearch.Xamarin.UI.Mocks;
 using Xamarin.Forms;
 
@@ -13,7 +15,7 @@ namespace TuneSearch.Xamarin.UI
 
             MainPage = new NavigationPage(new MainPage()
             {
-                BindingContext = new MainViewModel(new SearchRequestMock(), ShowResults) 
+                BindingContext = new MainViewModel(new TuneSearchService(new TuneSearchRepository()), ShowResults) 
             });
         }
 

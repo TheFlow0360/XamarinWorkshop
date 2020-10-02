@@ -5,7 +5,7 @@ namespace TuneSearch.Xamarin.UI.Mocks
 {
     class SearchResultMock : ISearchResult
     {
-        public IReadOnlyList<IAlbum> AlbumList => AlbumListInternal;
+        public IEnumerable<IAlbum> AlbumList => AlbumListInternal;
 
         private List<IAlbum> AlbumListInternal { get; }
 
